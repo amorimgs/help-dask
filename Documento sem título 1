@@ -1,0 +1,39 @@
+ROTAS
+	BUSCAR TECNICOS
+	GET  - "https://localhost:3000/tecnicos"
+	ADICIONAR TECNICO
+	POST - "https://localhost:3000/tecnicos"
+		body = {
+			"name": "exemple",
+			"password": "12345678",
+			"email": "exemple@exp.com"
+		}
+	FAZER LOGIN TECNICO
+	POST - "https://localhost:3000/tecnicos/login"
+		body = {
+			"name": "exemple",
+			"password": "12345678",
+		}
+	BUSCAR CHAMADOS
+	GET - "https://localhost:3000/chamados"
+		header = {
+			Authorization: "<token>"
+		}
+	ADICIONAR CHAMADO
+	POST - "https://localhost:3000/chamados"
+		body = {
+			"solicitante": "exemple",
+			"setor": "exemple",
+			"motivo": "exemple",
+			"urgencia": 1,
+			"observacoes": "exemple"
+		}
+	EDITAR CHAMADO
+	PUT - "https://localhost:3000/chamados/:id"
+		header = {
+			Authorization: "<token>"
+		}
+		body = {
+			"observacoesTec": "exemple",
+			"concluido": 0
+		}

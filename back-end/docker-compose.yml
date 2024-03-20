@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+  db:
+    container_name: help_dask_db
+    image: mysql:8.0.32
+    restart: always
+    ports:
+      # Expõe a porta padrão do banco de dados
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: 123
+      MYSQL_DATABASE: HelpDask
+    volumes:
+      - ./seed.sql:/docker-entrypoint-initdb.d/seed.sql
