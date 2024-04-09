@@ -15,21 +15,23 @@ const transporter = nodemiler.createTransport({
   }
 })
 
-const envioEmail = async () => {
+const envioEmail = async (id) => {
   const tecnicosAtivos = await modelTecnicos.getTecnicosAtivos();
-  console.log(tecnicosAtivos);
-  return '';
-  await tecnicosAtivos.forEach(async ({name, email}) => {
+  const enviarEmail = async (email, id) => {
     try {
      await transporter.sendMail({
         from: `HelpDask <${process.env.USER_TRANSPORTER}>`,
         to: email,
         subject: "HelpDask",
-        html: '<p>Você tem um novo chamado <strong>first email</strong>!</p>',
+        html: `<p>Você tem um novo chamado com id <strong>${id}</strong>!</p>`,
       });
     } catch (error) {
-     return res.status(400).json(error.message);
+     console.log(error.message);
     }
+  };
+
+  await tecnicosAtivos.forEach(async ({email}) => {
+    await enviarEmail(email, id);
   })
 };
 
@@ -39,12 +41,12 @@ const getAll = async () => {
 };
 
 const createChamado = async (body) => {
-  envioEmail();
   const error = validateInputs.validateNewChamado(body);
   if (error) {
     return {status: error.status, data:{message: error.message}}
   }
   const newChamado = await modelChamados.createChamado(body);
+  envioEmail(newChamado.id);
   return {status: 200, data: newChamado};
 };
 

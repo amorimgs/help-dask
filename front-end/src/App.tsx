@@ -1,27 +1,23 @@
-import React from "react"
-
-type Tec = {
-  name: string;
-  email: string;
-}
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import Chamado from "./pages/Chamado";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Tecnico from "./pages/Tecnico";
 
 function App() {
-  const [tec, setTec] = React.useState<Tec[] | null>(null);
-  React.useEffect(() => {
-    fetch('http://localhost:3000/tecnicos').then(r=>r.json()).then(data=>setTec(data));
-  },[]);
 
-  console.log(tec);
   return (
     <>
-      <h1>HelpDask</h1>
-      {tec &&
-        tec.map((tec) => (
-          <>
-            <h3>{tec.name}</h3>
-            <h3>{tec.email}</h3>
-          </>
-        ))}
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/tecnico/:id" element={<Tecnico />} />
+          <Route path="/chamado" element={<Chamado />} />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }

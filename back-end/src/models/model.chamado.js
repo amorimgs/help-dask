@@ -15,17 +15,16 @@ const getById = async (id) => {
   return result;
 };
 
-const createChamado = async ({solicitante, setor, motivo, urgencia, observacoes}) => {
+const createChamado = async ({solicitante, setor, motivo, observacoes}) => {
   const [result] = await connection.execute(
-    'INSERT INTO chamados (solicitante, setor, motivo, urgencia, observacoes) VALUES (?, ?, ?, ?, ?)',
-    [solicitante, setor, motivo, urgencia, observacoes],
+    'INSERT INTO chamados (solicitante, setor, motivo, observacoes) VALUES (?, ?, ?, ?)',
+    [solicitante, setor, motivo, observacoes],
   );
   return {
     id: result.insertId,
     solicitante,
     setor,
     motivo,
-    urgencia,
     observacoes,
   };
 };

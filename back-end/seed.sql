@@ -19,7 +19,6 @@ CREATE TABLE chamados (
   solicitante VARCHAR(255) NOT NULL,
   setor VARCHAR(100) NOT NULL,
   motivo VARCHAR(255) NOT NULL,
-  urgencia INT NOT NULL,
   data_abertura DATETIME DEFAULT CURRENT_TIMESTAMP,
   data_fechamento DATETIME,
   observacoes VARCHAR(500),
@@ -29,4 +28,6 @@ CREATE TABLE chamados (
   FOREIGN KEY (tecnico_id) REFERENCES tecnicos (id)
 );
 
-SELECT * FROM chamados
+SELECT * FROM chamados;
+
+SELECT * FROM tecnicos

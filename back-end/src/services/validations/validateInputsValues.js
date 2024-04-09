@@ -11,11 +11,10 @@ const validateLoginTecnico = ({email, password}) => {
   if (!emailRegex.test(email)) return {status: 400, message: 'O email tem de estar no formato "test@test.com"'}
 };
 
-const validateNewChamado = ({solicitante, setor, motivo, urgencia, observacoes}) => {
+const validateNewChamado = ({solicitante, setor, motivo, observacoes}) => {
   if (solicitante.length < 3 || typeof solicitante !== 'string') return {status: 400, message: 'Nome muito curto'}
   if (setor.length < 2 || typeof setor !== 'string') return {status: 400, message: 'Nome do setor muito curto'}
   if (motivo.length < 3 || typeof motivo !== 'string') return {status: 400, message: 'Motivo muito curto'}
-  if (urgencia > 3 || urgencia < 1 || typeof urgencia !== 'number') return {status: 400, message: 'Urgencia inválida'}
   if (typeof observacoes !== 'string') return {status: 400, message: 'Observacao Inválida'}
 };
 
